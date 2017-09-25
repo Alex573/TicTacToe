@@ -1,9 +1,5 @@
 /*
- * Java 1. Lesson 8. Game Tic Tac Toe
- * Class: Human
  *
- * @author Sergey Iryupin
- * @version 0.1 dated March 11, 2017
  */
 class Human {
     private final char DOT;

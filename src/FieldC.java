@@ -1,9 +1,5 @@
 /*
- * Java 1. Lesson 8. Game Tic Tac Toe
- * Class: Field
  *
- * @author Sergey Iryupin
- * @version 0.3 dated May 30, 2017
  */
 
 import java.awt.*;
@@ -21,7 +17,7 @@ class FieldC {
     private final String MSG_HUMANS_WON = "SERVER WON!";
     private char[][] fieldc;
     private String gameOverMsg;
-    static boolean flag = true;
+    static boolean flag = false;
 
     FieldC(int field_size, int cell_size) {
         FIELD_SIZE = field_size;

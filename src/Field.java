@@ -1,9 +1,5 @@
 /*
- * Java 1. Lesson 8. Game Tic Tac Toe
- * Class: Field
  *
- * @author Sergey Iryupin
- * @version 0.3 dated May 30, 2017
  */
 import java.awt.*;
 import java.awt.geom.*; // for Graphics2D

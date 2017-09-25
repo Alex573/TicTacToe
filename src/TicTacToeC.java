@@ -1,9 +1,5 @@
 /*
- * Java 1. Lesson 8. Game Tic Tac Toe
- * Class: Main-Class
  *
- * @author Sergey Iryupin
- * @version 0.3.1 dated Aug 19, 2017
  */
 
 import javax.swing.*;
@@ -13,6 +9,7 @@ import java.awt.event.ActionListener;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.io.BufferedReader;
+import java.io.IOException;
 import java.io.InputStreamReader;
 import java.io.PrintWriter;
 import java.net.Socket;
@@ -30,7 +27,7 @@ class TicTacToeC extends JFrame {
     final int CELL_SIZE = WINDOW_SIZE / FIELD_SIZE;
     final String BTN_INIT = "New game";
     final String BTN_EXIT = "Exit";
-    final String SERVER_ADDR = "127.0.0.1"; // server net name or "127.0.0.1"
+    final String SERVER_ADDR = "localhost"; // server net name or "127.0.0.1"
     final int SERVER_PORT = 2050; // servet port
     final String NEW_GAME = "SERVER NEW GAME";
     final String EXIT_GAMEC = "SERVER EXIT GAME";
@@ -63,8 +60,6 @@ class TicTacToeC extends JFrame {
             new Thread(new ServerListener()).start();
         } catch (Exception ex) {
             System.out.println(ex.getMessage());
-        }finally {
-            System.out.println("Connect close");
         }
 
         canvas.setBackground(Color.white);
@@ -91,12 +86,19 @@ class TicTacToeC extends JFrame {
                 canvas.repaint();
                 writer.println("new");
                 writer.flush();
-                FieldC.flag = true;
+                FieldC.flag = false;
             }
         });
         JButton exit = new JButton(BTN_EXIT);
         exit.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
+                writer.println("exit");
+                writer.flush();
+                try {
+                    socket.close();
+                } catch (IOException e1) {
+                    e1.printStackTrace();
+                }
                 System.exit(0);
             }
         });
@@ -149,6 +151,10 @@ class TicTacToeC extends JFrame {
                                 int y = parseInt(wds[1]);
                                 humancs.turn(fieldc, x, y);
                                 canvas.repaint();
+                                FieldC.flag=true;
+                            if (fieldc.isGameOver())
+                                JOptionPane.showMessageDialog(
+                                        TicTacToeC.this, fieldc.getGameOverMsg());
                                 break;
 
 

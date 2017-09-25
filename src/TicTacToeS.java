@@ -1,9 +1,5 @@
 /*
- * Java 1. Lesson 8. Game Tic Tac Toe
- * Class: Main-Class
  *
- * @author Sergey Iryupin
- * @version 0.3.1 dated Aug 19, 2017
  */
 
 import com.sun.corba.se.spi.activation.Server;
@@ -70,7 +66,12 @@ class TicTacToeS extends JFrame {
             public void mouseReleased(MouseEvent e) {
                 super.mouseReleased(e);
                 if(FieldS.flag){
-                    humanss.turn(e.getX()/CELL_SIZE, e.getY()/CELL_SIZE, fields);
+                    try {
+                        humanss.turn(e.getX()/CELL_SIZE, e.getY()/CELL_SIZE, fields);
+                    } catch (Exception e1) {
+                        JOptionPane.showMessageDialog(
+                                TicTacToeS.this, "Client NEPODKLICHILSI");
+                    }
                     canvas.repaint();
                 }else {
                     JOptionPane.showMessageDialog(
@@ -88,8 +89,13 @@ class TicTacToeS extends JFrame {
             public void actionPerformed(ActionEvent e) {
                 fields.init();
                 canvas.repaint();
-                writer.println("new");
-                writer.flush();
+                try {
+                    writer.println("new");
+                    writer.flush();
+                } catch (Exception e1) {
+                    JOptionPane.showMessageDialog(
+                            TicTacToeS.this, "Client NEPODKLICHILSI");
+                }
                 FieldS.flag = true;
             }
         });
@@ -169,7 +175,7 @@ class TicTacToeS extends JFrame {
                                     TicTacToeS.this, NEW_GAME);
                             fields.init();
                             canvas.repaint();
-
+                            FieldS.flag=true;
                             break;
                         case "exit":
                             JOptionPane.showMessageDialog(
@@ -182,6 +188,9 @@ class TicTacToeS extends JFrame {
                                 humansc.turn(fields, x, y);
                                 canvas.repaint();
                                 FieldS.flag = true;
+                                if (fields.isGameOver())
+                                 JOptionPane.showMessageDialog(
+                                        TicTacToeS.this, fields.getGameOverMsg());
                                 break;
 
                     }
