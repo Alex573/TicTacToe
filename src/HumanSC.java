@@ -1,3 +1,5 @@
+import static java.lang.Integer.parseInt;
+
 /*
  *
  */
@@ -6,12 +8,10 @@ class HumanSC {
 
     HumanSC(char ch) { DOT = ch; }
 
-    void turn(FieldS fields) {
-        int x, y;
-        do {
-            x = random.nextInt(fields.getSize());
-            y = random.nextInt(fields.getSize());
-        } while (!fields.isCellEmpty(x, y)); //пока незаполнится
-        fields.setDot(x, y, DOT);//запуск метода из фиелд
+    void turn(FieldS fields, int x, int y) {
+        if (fields.isCellEmpty(x, y)) {
+            if (!fields.isGameOver()) fields.setDot(x, y, DOT); //если не игра закончена устанавливаем координаты
+            //if (!fieldc.isGameOver()) humancs.turn(fieldc);//
+        }
     }
 }

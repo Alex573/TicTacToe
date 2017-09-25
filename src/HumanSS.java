@@ -1,3 +1,5 @@
+import javax.swing.*;
+
 /*
 *
 *
@@ -8,10 +10,16 @@ class HumanSS {
 
     HumanSS(char ch) { DOT = ch; }
 
-    void turn(int x, int y, FieldS fields, HumanSC humansc) {
-        if (fields.isCellEmpty(x, y)) {
-            if (!fields.isGameOver()) fields.setDot(x, y, DOT); //если не игра закончена устанавливаем координаты
-            if (!fields.isGameOver()) humansc.turn(fields);//
-        }
+    void turn(int x, int y, FieldS fields) {
+
+           if (fields.isCellEmpty(x, y)) {
+               if (!fields.isGameOver()) {
+                   fields.setDot(x, y, DOT);
+                   TicTacToeS.writer.println(x + " " + y);
+                   TicTacToeS.writer.flush();
+                   FieldS.flag = false;
+               }//если не игра закончена устанавливаем координаты
+           }
+
     }
 }

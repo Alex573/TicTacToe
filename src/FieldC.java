@@ -13,14 +13,15 @@ import java.awt.geom.Line2D;
 class FieldC {
     private final int FIELD_SIZE;
     private final int CELL_SIZE;
-    private final char HUMANC_DOT = 'o';
-    private final char HUMANS_DOT = 'x';
+    private final char HUMANC_DOT = 'x';
+    private final char HUMANS_DOT = 'o';
     private final char EMPTY_DOT = '.';
     private final String MSG_DRAW = "Draw, sorry...";
     private final String MSG_HUMANC_WON = "YOU WON!";
     private final String MSG_HUMANS_WON = "SERVER WON!";
     private char[][] fieldc;
     private String gameOverMsg;
+    static boolean flag = true;
 
     FieldC(int field_size, int cell_size) {
         FIELD_SIZE = field_size;
@@ -46,7 +47,8 @@ class FieldC {
 
     String getGameOverMsg() { return gameOverMsg; }
 
-    void setDot(int x, int y, char dot) { // set dot and check fill and win
+    void setDot(int x, int y, char dot) {
+        System.out.println(x+" "+y);// set dot and check fill and win
         fieldc[x][y] = dot;
         if (isFull())
             gameOverMsg = MSG_DRAW;
@@ -92,12 +94,12 @@ class FieldC {
         g2.setStroke(new BasicStroke(5));
         for (int y = 0; y < FIELD_SIZE; y++) {
             for (int x = 0; x < FIELD_SIZE; x++) {
-                if (fieldc[x][y] == HUMANC_DOT) {
+                if (fieldc[x][y] == HUMANS_DOT) {
                     g.setColor(Color.blue);
                     g2.draw(new Line2D.Float(x*CELL_SIZE+CELL_SIZE/4, y*CELL_SIZE+CELL_SIZE/4, (x+1)*CELL_SIZE-CELL_SIZE/4, (y+1)*CELL_SIZE-CELL_SIZE/4));
                     g2.draw(new Line2D.Float(x*CELL_SIZE+CELL_SIZE/4, (y+1)*CELL_SIZE-CELL_SIZE/4, (x+1)*CELL_SIZE-CELL_SIZE/4, y*CELL_SIZE+CELL_SIZE/4));
                 }
-                if (fieldc[x][y] == HUMANS_DOT) {
+                if (fieldc[x][y] == HUMANC_DOT) {
                     g.setColor(Color.red);
                     g2.draw(new Ellipse2D.Float(x*CELL_SIZE+CELL_SIZE/4, y*CELL_SIZE+CELL_SIZE/4, CELL_SIZE/2, CELL_SIZE/2));
                 }

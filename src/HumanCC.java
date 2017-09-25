@@ -6,10 +6,15 @@ class HumanCC {
 
     HumanCC(char ch) { DOT = ch; }
 
-    void turn(int x, int y, FieldC fieldc, HumanCS humancs) {
+    void turn(int x, int y, FieldC fieldc) {
         if (fieldc.isCellEmpty(x, y)) {
-            if (!fieldc.isGameOver()) fieldc.setDot(x, y, DOT); //если не игра закончена устанавливаем координаты
-            if (!fieldc.isGameOver()) humancs.turn(fieldc);//
+            if (!fieldc.isGameOver()){
+                fieldc.setDot(x, y, DOT);
+                TicTacToeC.writer.println(x+" "+y);
+                TicTacToeC.writer.flush();
+                FieldC.flag = false; //если не игра закончена устанавливаем координаты
+            }
+            //if (!fieldc.isGameOver()) humancs.turn(fieldc);//
         }
     }
 }

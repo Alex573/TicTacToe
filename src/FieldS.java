@@ -21,6 +21,7 @@ class FieldS {
     private final String MSG_HUMANC_WON = "CLIENT WON!";
     private char[][] fields;
     private String gameOverMsg;
+    static boolean flag = true;
 
     FieldS(int field_size, int cell_size) {
         FIELD_SIZE = field_size;
@@ -44,9 +45,12 @@ class FieldS {
 
     boolean isGameOver() { return gameOverMsg != null; }
 
+
+
     String getGameOverMsg() { return gameOverMsg; }
 
-    void setDot(int x, int y, char dot) { // set dot and check fill and win
+    void setDot(int x, int y, char dot) {
+        System.out.println(x+" "+y);// set dot and check fill and win
         fields[x][y] = dot;
         if (isFull())
             gameOverMsg = MSG_DRAW;
