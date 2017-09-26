@@ -46,9 +46,9 @@ public class TicTacToeS extends JFrame {
     Socket socket;
     String message;
 
-    public static void main(String args[]) {
+   /* public static void main(String args[]) {
         new TicTacToeS();
-    }
+    }*/
 
     TicTacToeS() {
         setTitle(TITLE_OF_PROGRAM);
