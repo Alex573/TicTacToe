@@ -12,9 +12,9 @@ class HumanCC {
                 fieldc.setDot(x, y, DOT);
                 TicTacToeC.writer.println(x+" "+y);
                 TicTacToeC.writer.flush();
-                FieldC.flag = false; //если не игра закончена устанавливаем координаты
+                FieldC.flag = false;
             }
-            //if (!fieldc.isGameOver()) humancs.turn(fieldc);//
+
         }
     }
 }

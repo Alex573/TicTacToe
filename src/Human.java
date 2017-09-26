@@ -8,8 +8,8 @@ class Human {
 
     void turn(int x, int y, Field field, AI ai) {
         if (field.isCellEmpty(x, y)) {
-            if (!field.isGameOver()) field.setDot(x, y, DOT); //если не игра закончена устанавливаем координаты
-            if (!field.isGameOver()) ai.turn(field);//
+            if (!field.isGameOver()) field.setDot(x, y, DOT);
+            if (!field.isGameOver()) ai.turn(field);
         }
     }
 }

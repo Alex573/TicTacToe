@@ -13,7 +13,7 @@ import java.io.IOException;
 import java.io.InputStreamReader;
 import java.io.PrintWriter;
 import java.net.Socket;
-import java.util.Scanner;
+
 
 import static java.lang.Integer.parseInt;
 
@@ -40,18 +40,17 @@ class TicTacToeC extends JFrame {
     Socket socket;
     static PrintWriter writer;
     BufferedReader reader;
-    Scanner scanner;
     String message;
 
-    public static void main(String args[]) {
-        TicTacToeC tic = new TicTacToeC(); }
+    /*public static void main(String args[]) {
+        TicTacToeC tic = new TicTacToeC(); }*/
 
     TicTacToeC() {
         setTitle(TITLE_OF_PROGRAM);
         setDefaultCloseOperation(EXIT_ON_CLOSE);
         setSize(WINDOW_SIZE + WINDOW_DX, WINDOW_SIZE + WINDOW_DY);
-        setLocationRelativeTo(null); // окно в центре
-        setResizable(false);// нельзя изменять размеры окна
+        setLocationRelativeTo(null);
+        setResizable(false);
         try {
             socket = new Socket(SERVER_ADDR, SERVER_PORT);
             writer = new PrintWriter(socket.getOutputStream());
@@ -149,8 +148,8 @@ class TicTacToeC extends JFrame {
                                 humancs.turn(fieldc, x, y);
                                 canvasc.repaint();
                                 FieldC.flag=true;
-                            if (fieldc.isGameOver())
-                                JOptionPane.showMessageDialog(
+                                 if (fieldc.isGameOver())
+                                    JOptionPane.showMessageDialog(
                                         TicTacToeC.this, fieldc.getGameOverMsg());
                                 break;
 

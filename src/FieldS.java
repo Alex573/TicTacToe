@@ -62,14 +62,14 @@ class FieldS {
         return false;
     }
 
-    boolean isFull() {// если ничья
+    boolean isFull() {
         for (int i = 0; i < FIELD_SIZE; i++)
             for (int j = 0; j < FIELD_SIZE; j++)
                 if (fields[i][j] == EMPTY_DOT) return false;
         return true;
     }
 
-    boolean isWin(char ch) {// Проверка выграл или нет
+    boolean isWin(char ch) {
         // checking horizontals / verticals
         for (int i = 0; i < FIELD_SIZE; i++)
             if ((fields[i][0] == ch && fields[i][1] == ch && fields[i][2] == ch) ||

@@ -14,7 +14,6 @@ import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.io.PrintWriter;
-
 import java.net.ServerSocket;
 import java.net.Socket;
 
@@ -40,6 +39,7 @@ public class TicTacToeS extends JFrame {
     FieldS fields = new FieldS(FIELD_SIZE, CELL_SIZE);
     HumanSS humanss = new HumanSS(fields.getHumansDot());
     HumanSC humansc = new HumanSC(fields.getHumancDot());
+
     ServerSocket server;
     BufferedReader reader;
     static PrintWriter writer;
@@ -54,8 +54,8 @@ public class TicTacToeS extends JFrame {
         setTitle(TITLE_OF_PROGRAM);
         setDefaultCloseOperation(EXIT_ON_CLOSE);
         setSize(WINDOW_SIZE + WINDOW_DX, WINDOW_SIZE + WINDOW_DY);
-        setLocationRelativeTo(null); // окно в центре
-        setResizable(false);// нельзя изменять размеры окна
+        setLocationRelativeTo(null);
+        setResizable(false);
 
         canvass.setBackground(Color.white);
         canvass.addMouseListener(new MouseAdapter() {
@@ -128,16 +128,14 @@ public class TicTacToeS extends JFrame {
             while (true) {
                 socket = server.accept();
                 writer = new PrintWriter(socket.getOutputStream());
-                reader = new BufferedReader(
-                        new InputStreamReader(socket.getInputStream()));
+                reader = new BufferedReader(new InputStreamReader(socket.getInputStream()));
                 new Thread(new Listener()).start();
-
             }
         } catch (Exception ex) {
             System.out.println(ex.getMessage());
         }finally {
             try {
-                // закрываем подключение
+
                 socket.close();
                 System.out.println("Server stop");
                 server.close();
@@ -158,8 +156,6 @@ public class TicTacToeS extends JFrame {
 
     public class Listener implements Runnable {
 
-        // Переопределяем метод run(), который вызывается когда
-        // мы вызываем new Thread(client).start();
         @Override
         public void run() {
             try {

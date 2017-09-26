@@ -56,14 +56,14 @@ class Field {
         return false;
     }
 
-    boolean isFull() {// если ничья
+    boolean isFull() {
         for (int i = 0; i < FIELD_SIZE; i++)
             for (int j = 0; j < FIELD_SIZE; j++)
                 if (field[i][j] == EMPTY_DOT) return false;
         return true;
     }
 
-    boolean isWin(char ch) {// Проверка выграл или нет
+    boolean isWin(char ch) {
         // checking horizontals / verticals
         for (int i = 0; i < FIELD_SIZE; i++)
             if ((field[i][0] == ch && field[i][1] == ch && field[i][2] == ch) ||

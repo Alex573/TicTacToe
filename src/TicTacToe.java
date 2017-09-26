@@ -29,8 +29,8 @@ class TicTacToe extends JFrame {
         setTitle(TITLE_OF_PROGRAM);
         setDefaultCloseOperation(EXIT_ON_CLOSE);
         setSize(WINDOW_SIZE + WINDOW_DX, WINDOW_SIZE + WINDOW_DY);
-        setLocationRelativeTo(null); // окно в центре
-        setResizable(false);// нельзя изменять размеры окна
+        setLocationRelativeTo(null);
+        setResizable(false);
 
         canvas.setBackground(Color.white);
         canvas.addMouseListener(new MouseAdapter() {

@@ -16,7 +16,7 @@ class AI {
         do {
             x = random.nextInt(field.getSize());
             y = random.nextInt(field.getSize());
-        } while (!field.isCellEmpty(x, y)); //пока незаполнится
-        field.setDot(x, y, DOT);//запуск метода из фиелд
+        } while (!field.isCellEmpty(x, y));
+        field.setDot(x, y, DOT);
     }
 }

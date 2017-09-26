@@ -18,7 +18,7 @@ class HumanSS {
                    TicTacToeS.writer.println(x + " " + y);
                    TicTacToeS.writer.flush();
                    FieldS.flag = false;
-               }//если не игра закончена устанавливаем координаты
+               }
            }
 
     }
