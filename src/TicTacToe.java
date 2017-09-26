@@ -1,9 +1,5 @@
 /*
- * Java 1. Lesson 8. Game Tic Tac Toe
- * Class: Main-Class
  *
- * @author Sergey Iryupin
- * @version 0.3.1 dated Aug 19, 2017
  */
 import javax.swing.*;
 import java.awt.*;
@@ -25,9 +21,9 @@ class TicTacToe extends JFrame {
     Human human = new Human(field.getHumanDot());
     AI ai = new AI(field.getAIDot());
 
-    public static void main(String args[]) {
+    /*public static void main(String args[]) {
         new TicTacToe();
-    }
+    }*/
 
     TicTacToe() {
         setTitle(TITLE_OF_PROGRAM);

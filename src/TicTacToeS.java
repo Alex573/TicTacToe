@@ -2,7 +2,7 @@
  *
  */
 
-import com.sun.corba.se.spi.activation.Server;
+
 
 import javax.swing.*;
 import java.awt.*;
@@ -14,14 +14,14 @@ import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.io.PrintWriter;
-import java.lang.reflect.Field;
+
 import java.net.ServerSocket;
 import java.net.Socket;
 
 
 import static java.lang.Integer.parseInt;
 
-class TicTacToeS extends JFrame {
+public class TicTacToeS extends JFrame {
 
     final String TITLE_OF_PROGRAM = "Tic Tac Toe Server";
     final int WINDOW_SIZE = 330;
@@ -36,7 +36,7 @@ class TicTacToeS extends JFrame {
     final String NEW_GAME = "ClIENT NEW GAME";
     final String EXIT_GAMEC = "ClIENT EXIT GAME";
 
-    Canvas canvas = new Canvas();
+    Canvass canvass = new Canvass();
     FieldS fields = new FieldS(FIELD_SIZE, CELL_SIZE);
     HumanSS humanss = new HumanSS(fields.getHumansDot());
     HumanSC humansc = new HumanSC(fields.getHumancDot());
@@ -57,11 +57,8 @@ class TicTacToeS extends JFrame {
         setLocationRelativeTo(null); // окно в центре
         setResizable(false);// нельзя изменять размеры окна
 
-
-
-
-        canvas.setBackground(Color.white);
-        canvas.addMouseListener(new MouseAdapter() {
+        canvass.setBackground(Color.white);
+        canvass.addMouseListener(new MouseAdapter() {
             @Override
             public void mouseReleased(MouseEvent e) {
                 super.mouseReleased(e);
@@ -72,13 +69,13 @@ class TicTacToeS extends JFrame {
                         JOptionPane.showMessageDialog(
                                 TicTacToeS.this, "Client NEPODKLICHILSI");
                     }
-                    canvas.repaint();
+                    canvass.repaint();
                 }else {
                     JOptionPane.showMessageDialog(
                             TicTacToeS.this, "Client eshe neschodil");
                 }
 
-                canvas.repaint();
+                canvass.repaint();
                 if (fields.isGameOver())
                     JOptionPane.showMessageDialog(
                         TicTacToeS.this, fields.getGameOverMsg());
@@ -88,7 +85,7 @@ class TicTacToeS extends JFrame {
         init.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
                 fields.init();
-                canvas.repaint();
+                canvass.repaint();
                 try {
                     writer.println("new");
                     writer.flush();
@@ -122,7 +119,7 @@ class TicTacToeS extends JFrame {
 
         setLayout(new BorderLayout()); // for main window
         add(bp, BorderLayout.SOUTH);
-        add(canvas, BorderLayout.CENTER);
+        add(canvass, BorderLayout.CENTER);
         setVisible(true);
 
         try {
@@ -130,7 +127,6 @@ class TicTacToeS extends JFrame {
             System.out.println("Server started.");
             while (true) {
                 socket = server.accept();
-
                 writer = new PrintWriter(socket.getOutputStream());
                 reader = new BufferedReader(
                         new InputStreamReader(socket.getInputStream()));
@@ -152,7 +148,7 @@ class TicTacToeS extends JFrame {
         }
     }
 
-    class Canvas extends JPanel { // for painting
+    class Canvass extends JPanel { // for painting
         @Override
         public void paint(Graphics g) {
             super.paint(g);
@@ -174,7 +170,7 @@ class TicTacToeS extends JFrame {
                             JOptionPane.showMessageDialog(
                                     TicTacToeS.this, NEW_GAME);
                             fields.init();
-                            canvas.repaint();
+                            canvass.repaint();
                             FieldS.flag=true;
                             break;
                         case "exit":
@@ -186,7 +182,7 @@ class TicTacToeS extends JFrame {
                                 int x = parseInt(wds[0]);
                                 int y = parseInt(wds[1]);
                                 humansc.turn(fields, x, y);
-                                canvas.repaint();
+                                canvass.repaint();
                                 FieldS.flag = true;
                                 if (fields.isGameOver())
                                  JOptionPane.showMessageDialog(

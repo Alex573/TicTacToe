@@ -19,7 +19,7 @@ import static java.lang.Integer.parseInt;
 
 class TicTacToeC extends JFrame {
 
-    final String TITLE_OF_PROGRAM = "Tic Tac Toe client";
+    final String TITLE_OF_PROGRAM = "Tic Tac Toe Client";
     final int WINDOW_SIZE = 330;
     final int WINDOW_DX = 7;
     final int WINDOW_DY = 55;
@@ -32,7 +32,7 @@ class TicTacToeC extends JFrame {
     final String NEW_GAME = "SERVER NEW GAME";
     final String EXIT_GAMEC = "SERVER EXIT GAME";
 
-    Canvas canvas = new Canvas();
+    Canvasc canvasc = new Canvasc();
     FieldC fieldc = new FieldC(FIELD_SIZE, CELL_SIZE);
     HumanCC humancc = new HumanCC(fieldc.getHumancDot());
     HumanCS humancs = new HumanCS(fieldc.getHumansDot());
@@ -62,14 +62,14 @@ class TicTacToeC extends JFrame {
             System.out.println(ex.getMessage());
         }
 
-        canvas.setBackground(Color.white);
-        canvas.addMouseListener(new MouseAdapter() {
+        canvasc.setBackground(Color.white);
+        canvasc.addMouseListener(new MouseAdapter() {
             @Override
             public void mouseReleased(MouseEvent e) {
                 super.mouseReleased(e);
                 if(FieldC.flag){
                     humancc.turn(e.getX()/CELL_SIZE, e.getY()/CELL_SIZE, fieldc);
-                    canvas.repaint();
+                    canvasc.repaint();
                 }else {
                     JOptionPane.showMessageDialog(
                             TicTacToeC.this, "EShe server neschodil");
@@ -83,7 +83,7 @@ class TicTacToeC extends JFrame {
         init.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
                 fieldc.init();
-                canvas.repaint();
+                canvasc.repaint();
                 writer.println("new");
                 writer.flush();
                 FieldC.flag = false;
@@ -110,22 +110,19 @@ class TicTacToeC extends JFrame {
 
         setLayout(new BorderLayout()); // for main window
         add(bp, BorderLayout.SOUTH);
-        add(canvas, BorderLayout.CENTER);
+        add(canvasc, BorderLayout.CENTER);
         setVisible(true);
 
     }
 
-
-
-
-
-    class Canvas extends JPanel { // for painting
+    class Canvasc extends JPanel { // for painting
         @Override
         public void paint(Graphics g) {
             super.paint(g);
             fieldc.paint(g);
         }
     }
+
     class ServerListener implements Runnable {
         @Override
         public void run() {
@@ -137,7 +134,7 @@ class TicTacToeC extends JFrame {
                             JOptionPane.showMessageDialog(
                                     TicTacToeC.this, NEW_GAME);
                             fieldc.init();
-                            canvas.repaint();
+                            canvasc.repaint();
 
                             break;
                         case "exit":
@@ -150,7 +147,7 @@ class TicTacToeC extends JFrame {
                                 int x = parseInt(wds[0]);
                                 int y = parseInt(wds[1]);
                                 humancs.turn(fieldc, x, y);
-                                canvas.repaint();
+                                canvasc.repaint();
                                 FieldC.flag=true;
                             if (fieldc.isGameOver())
                                 JOptionPane.showMessageDialog(
